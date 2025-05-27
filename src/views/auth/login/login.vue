@@ -14,7 +14,7 @@ export default {
         async login() {
 
             try {
-                const response = await apiClient.post('api/login', {
+                const response = await apiClient.post('/login', {
                     email: this.email,
                     password: this.password,
                 },);
@@ -22,7 +22,7 @@ export default {
 
                 if (response.status === 200) {
                     // Login berhasil
-                    const token = response.data.accessToken;
+                    const token = response.data.token;
                     // Simpan token akses di localStorage
                     localStorage.setItem('accessToken', token);
                     this.$router.push({ path: '/home' });

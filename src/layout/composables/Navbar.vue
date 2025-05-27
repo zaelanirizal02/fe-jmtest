@@ -6,19 +6,19 @@
                 <div class="flex align-items-center justify-content-between pt-3 flex-shrink-0">
                     <span class="inline-flex align-items-center gap-2" style="margin-bottom: 10px;">
                         <img src="../../assets/xri-logo.svg" width="80" height="70" alt="Logo" />
-                        <!-- <span class="font-semibold text-2xl text-primary">XRI</span> -->
                     </span>
                 </div>
             </template>
             <template #end>
                 <div class="flex align-items-center gap-2">
                     <div class="toggle-container" @click="toggleDarkMode">
+                      <label>Tema</label>
                         <Button class="toggle-button">
                             <i :class="checked ? 'pi pi-moon' : 'pi pi-sun'"
                                 :style="{ color: checked ? 'yellow' : 'blue' }"></i>
                         </Button>
                     </div>
-                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />
+<!--                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />-->
                     <div style="display: flex; align-items: center">
 
                         <!-- <Button icon="pi pi-file-pdf" severity="success" class="mr-2 bs" /> -->
@@ -42,7 +42,7 @@ const router = useRouter();
 
 const role = "director";
 const isDropdownVisible = ref(false);
-const checked = ref(localStorage.getItem('dark-mode') === 'true');
+const checked = ref(localStorage.getItem('dark-mode') === 'true' || localStorage.getItem('dark-mode') === null);
 
 function toggleDropdown() {
     isDropdownVisible.value = !isDropdownVisible.value;
@@ -118,51 +118,51 @@ const items = ref([
         label: "About Us",
         icon: "pi pi-flag",
     },
-    {
-        label: "Organization Structure",
-        icon: "pi pi-users",
-        items: [
-            {
-                label: "Core",
-                icon: "pi pi-bolt",
-                shortcut: "⌘+S",
-            },
-            {
-                label: "Blocks",
-                icon: "pi pi-server",
-                shortcut: "⌘+B",
-            },
-            {
-                label: "UI Kit",
-                icon: "pi pi-pencil",
-                shortcut: "⌘+U",
-            },
-            {
-                separator: true,
-            },
-            {
-                label: "Templates",
-                icon: "pi pi-palette",
-                items: [
-                    {
-                        label: "Apollo",
-                        icon: "pi pi-palette",
-                        badge: 2,
-                    },
-                    {
-                        label: "Ultima",
-                        icon: "pi pi-palette",
-                        badge: 3,
-                    },
-                ],
-            },
-        ],
-    },
-    {
-        label: "Contact Us",
-        icon: "pi pi-envelope",
-        badge: 3,
-    },
+    // {
+    //     label: "Organization Structure",
+    //     icon: "pi pi-users",
+    //     items: [
+    //         {
+    //             label: "Core",
+    //             icon: "pi pi-bolt",
+    //             shortcut: "⌘+S",
+    //         },
+    //         {
+    //             label: "Blocks",
+    //             icon: "pi pi-server",
+    //             shortcut: "⌘+B",
+    //         },
+    //         {
+    //             label: "UI Kit",
+    //             icon: "pi pi-pencil",
+    //             shortcut: "⌘+U",
+    //         },
+    //         {
+    //             separator: true,
+    //         },
+    //         {
+    //             label: "Templates",
+    //             icon: "pi pi-palette",
+    //             items: [
+    //                 {
+    //                     label: "Apollo",
+    //                     icon: "pi pi-palette",
+    //                     badge: 2,
+    //                 },
+    //                 {
+    //                     label: "Ultima",
+    //                     icon: "pi pi-palette",
+    //                     badge: 3,
+    //                 },
+    //             ],
+    //         },
+    //     ],
+    // },
+    // {
+    //     label: "Contact Us",
+    //     icon: "pi pi-envelope",
+    //     badge: 3,
+    // },
 
 ]);
 
@@ -175,7 +175,7 @@ const logout = async () => {
             return;
         }
 
-        const response = await apiClient.post("api/logout", {}, {
+        const response = await apiClient.post("/logout", {}, {
             headers: {
                 Authorization: `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
@@ -185,8 +185,10 @@ const logout = async () => {
         localStorage.removeItem("accessToken");
         router.push({ name: "login" });
     } catch (error) {
-        console.error("Error during logout:", error);
+      console.error("Error during logout:", error.response?.status);
+      console.error("Error detail:", error.response?.data);
     }
+
 };
 
 const menuSetting = [

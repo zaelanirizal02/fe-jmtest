@@ -7,7 +7,7 @@
                         <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
                             <span class="inline-flex align-items-center gap-2">
                                 <img src="../../assets/xri-logo.svg" width="60" height="50" alt="Logo" />
-                                <span class="font-semibold text-2xl text-primary">Menu</span>
+                                <span class="font-semibold text-2xl text-primary">KLINIKU</span>
                             </span>
                             <span>
                                 <Button type="button" @click="closeCallback" icon="pi pi-times" rounded outlined
@@ -40,30 +40,24 @@
                                             <a v-ripple
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-users mr-2"></i>
-                                                <span class="font-medium">Member</span>
+                                                <span class="font-medium">Dokter Menu</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a v-ripple
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-book mr-2"></i>
-                                                <span class="font-medium">News</span>
+                                                <i class="pi pi-users mr-2"></i>
+                                                <span class="font-medium">Perawat Menu</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a v-ripple
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-clipboard mr-2"></i>
-                                                <span class="font-medium">Event</span>
+                                                <span class="font-medium">Pendaftaran Menu</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a v-ripple
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-calendar mr-2"></i>
-                                                <span class="font-medium">Calendar</span>
-                                            </a>
-                                        </li>
+
                                         <li>
                                             <a v-ripple v-styleclass="{
                                                 selector: '@next',
@@ -79,84 +73,19 @@
                                             </a>
                                             <ul
                                                 class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
-                                                <li>
-                                                    <a v-ripple v-styleclass="{
-                                                        selector: '@next',
-                                                        enterClass: 'hidden',
-                                                        enterActiveClass: 'slidedown',
-                                                        leaveToClass: 'hidden',
-                                                        leaveActiveClass: 'slideup'
-                                                    }"
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Anggota</span>
-                                                        <i class="pi pi-chevron-down ml-auto"></i>
-                                                    </a>
-                                                    <ul
-                                                        class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
-                                                        <li>
-                                                            <a v-ripple
-                                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                                <i class="pi pi-table mr-2"></i>
-                                                                <span class="font-medium">View</span>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a v-ripple
-                                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                                <i class="pi pi-search mr-2"></i>
-                                                                <span class="font-medium">Search</span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
+
                                                 <li>
                                                     <a v-ripple
                                                         class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Chapter</span>
+                                                      <i class="pi pi-user mr-2"></i>
+                                                        <span class="font-medium">User</span>
                                                     </a>
                                                 </li>
                                                 <li>
                                                     <a v-ripple href="/master-pendidikan"
                                                         class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Pendidikan</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Pekerjaan</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Agama</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Golongan Darah</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Kontak Darurat</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                        <i class="pi pi-chart-line mr-2"></i>
-                                                        <span class="font-medium">Role</span>
+                                                        <i class="pi pi-shield mr-2"></i>
+                                                        <span class="font-medium">Obat</span>
                                                     </a>
                                                 </li>
                                             </ul>
@@ -169,44 +98,6 @@
                                                 <span
                                                     class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle"
                                                     style="min-width: 1.5rem; height: 1.5rem">3</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="list-none p-3 m-0">
-                                <li>
-                                    <div v-ripple v-styleclass="{
-                                        selector: '@next',
-                                        enterClass: 'hidden',
-                                        enterActiveClass: 'slidedown',
-                                        leaveToClass: 'hidden',
-                                        leaveActiveClass: 'slideup'
-                                    }"
-                                        class="p-3 flex align-items-center justify-content-between text-600 cursor-pointer p-ripple">
-                                        <span class="font-medium">APPLICATION</span>
-                                        <i class="pi pi-chevron-down"></i>
-                                    </div>
-                                    <ul class="list-none p-0 m-0 overflow-hidden">
-                                        <li>
-                                            <a v-ripple
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-folder mr-2"></i>
-                                                <span class="font-medium">Projects</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a v-ripple
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-chart-bar mr-2"></i>
-                                                <span class="font-medium">Performance</span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a v-ripple
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-cog mr-2"></i>
-                                                <span class="font-medium">Settings</span>
                                             </a>
                                         </li>
                                     </ul>

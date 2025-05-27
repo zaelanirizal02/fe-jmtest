@@ -47,7 +47,7 @@
         <Column field="tanggal_lahir" header="Tanggal Lahir" sortable style=""></Column>
         <Column field="alamat" header="Alamat" sortable style=""></Column>
         <Column field="no_telepon" header="No. Telepon" sortable style=""></Column>
-        <Column header="Aksi" :exportable="false" style="min-width:8rem">
+        <Column header="Lihat Detail Pasien" :exportable="false" style="">
           <template #body="slotProps">
             <Button icon="pi pi-eye" rounded outlined class="mr-2"
                     @click="viewDetails(slotProps.data)"

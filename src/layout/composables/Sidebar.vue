@@ -30,7 +30,8 @@
                                     </div>
                                     <ul class="list-none p-0 m-0 overflow-hidden">
                                         <li>
-                                            <a v-ripple href="/"
+                                            <a v-ripple href="/home"
+                                            
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-home mr-2"></i>
                                                 <span class="font-medium">Dashboard</span>
@@ -45,6 +46,7 @@
                                         </li>
                                         <li>
                                             <a v-ripple
+                                            href="/master/pasien"
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-users mr-2"></i>
                                                 <span class="font-medium">Pasien</span>
@@ -57,14 +59,7 @@
                                                 <span class="font-medium">Perawat Menu</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a v-ripple
-                                            href="/master/pasien"
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-clipboard mr-2"></i>
-                                                <span class="font-medium">Pendaftaran Menu</span>
-                                            </a>
-                                        </li>
+                                        
 
                                         <li>
                                             <a v-ripple v-styleclass="{

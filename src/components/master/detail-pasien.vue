@@ -6,7 +6,11 @@
       <!-- Header -->
       <div class="flex justify-content-between align-items-center mb-4">
         <h2 class="m-0">Detail Pasien</h2>
-        <Button icon="pi pi-arrow-left" label="Kembali" @click="$router.push('/master/pasien')" />
+        <div class="flex gap-2">
+          <Button icon="pi pi-plus" label="Tambah Diagnosa" severity="success" @click="$router.push(`/master/pasien/${$route.params.id}/diagnosa`)" />
+          <Button icon="pi pi-plus" label="Tambah Resep" severity="info" @click="$router.push(`/master/pasien/${$route.params.id}/obat`)" />
+          <Button icon="pi pi-arrow-left" label="Kembali" @click="$router.push('/master/pasien')" />
+        </div>
       </div>
 
       <div v-if="loading" class="flex justify-content-center">

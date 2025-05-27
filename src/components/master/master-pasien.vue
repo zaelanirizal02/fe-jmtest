@@ -39,14 +39,21 @@
           </div>
         </template>
 
-        <Column selectionMode="multiple" style="width: 3rem" :exportable="false"></Column>
-        <Column field="nama" header="Nama" sortable style="min-width:16rem"></Column>
-        <Column field="nik" header="NIK" sortable style="min-width:16rem"></Column>
-        <Column field="jenis_kelamin" header="Jenis Kelamin" sortable style="min-width:10rem"></Column>
-        <Column field="tempat_lahir" header="Tempat Lahir" sortable style="min-width:12rem"></Column>
-        <Column field="tanggal_lahir" header="Tanggal Lahir" sortable style="min-width:12rem"></Column>
-        <Column field="alamat" header="Alamat" sortable style="min-width:20rem"></Column>
-        <Column field="no_telepon" header="No. Telepon" sortable style="min-width:12rem"></Column>
+        <Column selectionMode="multiple" style="" :exportable="false"></Column>
+        <Column field="nama" header="Nama" sortable style=""></Column>
+        <Column field="nik" header="NIK" sortable style=""></Column>
+        <Column field="jenis_kelamin" header="Jenis Kelamin" sortable style=""></Column>
+        <Column field="tempat_lahir" header="Tempat Lahir" sortable style=""></Column>
+        <Column field="tanggal_lahir" header="Tanggal Lahir" sortable style=""></Column>
+        <Column field="alamat" header="Alamat" sortable style=""></Column>
+        <Column field="no_telepon" header="No. Telepon" sortable style=""></Column>
+        <Column header="Aksi" :exportable="false" style="min-width:8rem">
+          <template #body="slotProps">
+            <Button icon="pi pi-eye" rounded outlined class="mr-2"
+                    @click="viewDetails(slotProps.data)"
+                    severity="info" />
+          </template>
+        </Column>
       </DataTable>
     </div>
 
@@ -172,12 +179,16 @@
   </div>
 </template>
 
+<style>
+@import '../style.css';
+</style>
+
 <script setup>
 import { ref, onMounted } from 'vue';
 import { FilterMatchMode } from 'primevue/api';
 import { useToast } from 'primevue/usetoast';
 import apiClient from '../../services/apiService';
-import "../style.css"
+import { useRouter } from 'vue-router';
 
 onMounted(() => {
   fetchData();
@@ -192,6 +203,7 @@ const deleteDataDialog = ref(false);
 const pasien = ref({});
 const selectedPasiens = ref();
 const submitted = ref(false);
+const router = useRouter();
 
 const jenisKelaminOptions = [
   { label: 'Laki-laki', value: 'L' },
@@ -375,5 +387,9 @@ const exportCSV = () => {
 
 const confirmDeleteSelected = () => {
   deleteDataDialog.value = true;
+};
+
+const viewDetails = (data) => {
+  router.push(`/master/pasien/${data.id}`);
 };
 </script> 

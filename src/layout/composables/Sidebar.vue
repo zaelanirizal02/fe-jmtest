@@ -47,12 +47,19 @@
                                             <a v-ripple
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-users mr-2"></i>
+                                                <span class="font-medium">Pasien</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a v-ripple
+                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
+                                                <i class="pi pi-users mr-2"></i>
                                                 <span class="font-medium">Perawat Menu</span>
                                             </a>
                                         </li>
                                         <li>
                                             <a v-ripple
-                                            href="/pendaftaran"
+                                            href="/master/pasien"
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-clipboard mr-2"></i>
                                                 <span class="font-medium">Pendaftaran Menu</span>
@@ -77,7 +84,7 @@
 
                                               
                                                 <li>
-                                                    <a v-ripple href="/master-obat"
+                                                    <a v-ripple href="/master/obat"
                                                         class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                         <i class="pi pi-shield mr-2"></i>
                                                         <span class="font-medium">Obat</span>

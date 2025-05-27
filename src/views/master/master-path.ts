@@ -4,27 +4,32 @@ import defaultLayout from "../../layout/default.vue";
 import masterPendidikan from "./master-pendidikan.vue";
 import masterObat from "../../components/master/master-obat.vue";
 import masterPasien from "../../components/master/master-pasien.vue";
+import detailPasien from "../../components/master/detail-pasien.vue";
 
 const masterPath: Array<RouteRecordRaw> = [
   {
-    path: "",
-    name: "master-pendidikan",
+    path: "/master",
     component: defaultLayout,
     children: [
       {
-        path: "/master-pendidikan",
+        path: "pendidikan",
         name: "Master Pendidikan",
         component: masterPendidikan,
       },
       {
-        path: "/master-obat",
+        path: "obat",
         name: "Master Obat",
         component: masterObat,
       },
       {
-        path: "/pendaftaran",
-        name: "Master Pasien",
+        path: "pasien",
+        name: "master-pasien",
         component: masterPasien,
+      },
+      {
+        path: "pasien/:id",
+        name: "detail-pasien",
+        component: detailPasien,
       },
     ],
     beforeEnter: requireAuth,

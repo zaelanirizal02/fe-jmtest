@@ -12,16 +12,19 @@
             <template #end>
                 <div class="flex align-items-center gap-2">
                     <div class="toggle-container" @click="toggleDarkMode">
-                      <label>Tema</label>
+                      <label>Tema | </label>
                         <Button class="toggle-button">
                             <i :class="checked ? 'pi pi-moon' : 'pi pi-sun'"
                                 :style="{ color: checked ? 'yellow' : 'blue' }"></i>
                         </Button>
                     </div>
+                      <label>| Mode {{ userRole }}</label>
+
 <!--                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />-->
                     <div style="display: flex; align-items: center">
 
                         <!-- <Button icon="pi pi-file-pdf" severity="success" class="mr-2 bs" /> -->
+
                         <SplitButton class="bs" label="" icon="pi pi-cog" :model="menuSetting" severity="">
                         </SplitButton>
                     </div>
@@ -39,10 +42,31 @@ import spongebobImg from "../../assets/sepongebob.png";
 import apiClient from "../../services/apiService";
 
 const router = useRouter();
+const userRole = ref('');
 
 const role = "director";
 const isDropdownVisible = ref(false);
 const checked = ref(localStorage.getItem('dark-mode') === 'true' || localStorage.getItem('dark-mode') === null);
+
+const fetchUserRole = async () => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) return;
+
+    const response = await apiClient.get("/me", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`
+      }
+    });
+
+    userRole.value = response.data.user.role || '';
+  } catch (error) {
+    console.error("Gagal mengambil role:", error.response?.data);
+  }
+};
+
+fetchUserRole();
+
 
 function toggleDropdown() {
     isDropdownVisible.value = !isDropdownVisible.value;

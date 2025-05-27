@@ -18,7 +18,7 @@
                                 :style="{ color: checked ? 'yellow' : 'blue' }"></i>
                         </Button>
                     </div>
-                      <label>| Mode {{ userRole }}</label>
+                      <label class="blinking">| Mode {{ userRole }}</label>
 
 <!--                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />-->
                     <div style="display: flex; align-items: center">
@@ -351,4 +351,19 @@ body {
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
+.blinking {
+  animation: blink-animation 1.5s linear infinite;
+  color: rgb(197, 230, 50); /* Bisa disesuaikan */
+  font-weight: bold;
+}
+
+@keyframes blink-animation {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
 </style>

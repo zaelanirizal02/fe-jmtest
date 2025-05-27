@@ -6,7 +6,7 @@
                     <div class="flex flex-column h-full">
                         <div class="flex align-items-center justify-content-between px-4 pt-3 flex-shrink-0">
                             <span class="inline-flex align-items-center gap-2">
-                                <img src="../../assets/xri-logo.svg" width="60" height="50" alt="Logo" />
+                                <img src="../../assets/jmt.png" width="60" height="60" alt="Logo" />
                                 <span class="font-semibold text-2xl text-primary">KLINIKU</span>
                             </span>
                             <span>
@@ -39,6 +39,7 @@
                                         </li>
                                         <li>
                                             <a v-ripple
+                                               href="/master/pasien"
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-users mr-2"></i>
                                                 <span class="font-medium">Dokter Menu</span>
@@ -54,6 +55,7 @@
                                         </li>
                                         <li>
                                             <a v-ripple
+                                               href="/master/pasien"
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-users mr-2"></i>
                                                 <span class="font-medium">Perawat Menu</span>

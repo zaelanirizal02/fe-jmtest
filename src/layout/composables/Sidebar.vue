@@ -52,6 +52,7 @@
                                         </li>
                                         <li>
                                             <a v-ripple
+                                            href="/pendaftaran"
                                                 class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                 <i class="pi pi-clipboard mr-2"></i>
                                                 <span class="font-medium">Pendaftaran Menu</span>
@@ -74,31 +75,15 @@
                                             <ul
                                                 class="list-none py-0 pl-3 pr-0 m-0 hidden overflow-y-hidden transition-all transition-duration-400 transition-ease-in-out">
 
+                                              
                                                 <li>
-                                                    <a v-ripple
-                                                        class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                      <i class="pi pi-user mr-2"></i>
-                                                        <span class="font-medium">User</span>
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a v-ripple href="/master-pendidikan"
+                                                    <a v-ripple href="/master-obat"
                                                         class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
                                                         <i class="pi pi-shield mr-2"></i>
                                                         <span class="font-medium">Obat</span>
                                                     </a>
                                                 </li>
                                             </ul>
-                                        </li>
-                                        <li>
-                                            <a v-ripple
-                                                class="flex align-items-center cursor-pointer p-3 border-round text-700 hover:surface-100 transition-duration-150 transition-colors p-ripple">
-                                                <i class="pi pi-user mr-2"></i>
-                                                <span class="font-medium">Applicant Request</span>
-                                                <span
-                                                    class="inline-flex align-items-center justify-content-center ml-auto bg-primary border-circle"
-                                                    style="min-width: 1.5rem; height: 1.5rem">3</span>
-                                            </a>
                                         </li>
                                     </ul>
                                 </li>

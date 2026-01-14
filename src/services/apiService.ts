@@ -1,15 +1,13 @@
+
 // src/services/apiService.js
 import axios from "axios";
 import router from "../router";
 
-const apiClient = axios.create({
-  baseURL: "http://localhost:8000/api", // Updated with your API base URL
-  headers: {
-    "Content-Type": "application/json",
-  },
-  timeout: 10000,
+  const apiClient = axios.create({
+  baseURL: import.meta.env.VITE_API_BASE || "/api",
+  timeout: 15000
 });
-
+  
 apiClient.interceptors.request.use(
   (config) => {
     //menambah token ke header request jika ada

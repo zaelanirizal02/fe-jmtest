@@ -96,7 +96,16 @@
                     </div>
                 </template>
             </Sidebar>
-            <Button v-if="!$route.meta.hideSidebar" class="button-wrapper" icon="pi pi-bars" @click="toggleSidebar" />
+            <Button 
+                v-if="!$route.meta.hideSidebar" 
+                class="hamburger-button" 
+                icon="pi pi-bars" 
+                @click="toggleSidebar"
+                rounded
+                text
+                severity="primary"
+                aria-label="Toggle Sidebar"
+            />
             <!-- Konten Utama -->
             <div :class="{
                 'content-with-sidebar': isSidebarOpen,
@@ -142,10 +151,9 @@ function toggleSidebar() {
     border-radius: 2%;
     height: 100%;
     width: 15%;
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
+    background-color: rgba(255, 255, 255, 0);
     z-index: 999;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 .content-with-sidebar {
@@ -176,12 +184,33 @@ function toggleSidebar() {
     overflow-y: auto;
 }
 
-/* Styling Tombol */
-.button-wrapper {
+/* Styling Hamburger Button */
+.hamburger-button {
     position: fixed;
-    top: 25px;
-    left: 20px;
+    top: 18px;
+    left: 18px;
     z-index: 1001;
+    padding: 0.5rem !important;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    background-color: var(--surface-card);
+    border: 1px solid var(--surface-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease;
+}
+
+.hamburger-button:hover {
+    background-color: var(--primary-50);
+    color: var(--primary-color);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.hamburger-button i {
+    font-size: 1.25rem;
 }
 
 ul {

@@ -46,7 +46,7 @@ const userRole = ref('');
 
 const role = "director";
 const isDropdownVisible = ref(false);
-const checked = ref(localStorage.getItem('dark-mode') === 'true' || localStorage.getItem('dark-mode') === null);
+const checked = ref(localStorage.getItem('dark-mode') === 'true')
 
 const fetchUserRole = async () => {
   try {
@@ -96,36 +96,18 @@ function switchTheme(theme) {
 }
 
 function toggleDarkMode() {
-    const light = document.getElementById('theme-light');
-    const dark = document.getElementById('theme-dark');
-
-    checked.value = !checked.value;
-
-    if (checked.value) {
-        light.disabled = true;
-        dark.disabled = false;
-        localStorage.setItem('dark-mode', 'true');
-    } else {
-        light.disabled = false;
-        dark.disabled = true;
-        localStorage.setItem('dark-mode', 'false');
-    }
+  checked.value = !checked.value
+  localStorage.setItem('dark-mode', String(checked.value))
+  applyThemeClass()
 }
 
-function applyInitialTheme() {
-    const light = document.getElementById('theme-light');
-    const dark = document.getElementById('theme-dark');
-
-    if (checked.value) {
-        light.disabled = true;
-        dark.disabled = false;
-    } else {
-        light.disabled = false;
-        dark.disabled = true;
-    }
+function applyThemeClass() {
+  const html = document.documentElement
+  html.classList.toggle('dark', checked.value)
 }
 
-applyInitialTheme();
+applyThemeClass()
+
 
 watch(checked, (newValue) => {
     const htmlElement = document.documentElement;

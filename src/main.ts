@@ -1,20 +1,20 @@
-import { createApp } from 'vue';
-import App from './App.vue';
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
 
-import router from './router';
+// PrimeVue
+import PrimeVue from 'primevue/config'
+import 'primevue/resources/themes/lara-light-blue/theme.css'
+import 'primevue/resources/primevue.min.css'
+import 'primeicons/primeicons.css'
 
-import PrimeVue from 'primevue/config';
+// Components
+import { registerPrimeVueComponents } from './plugins/primevue'
 
-import 'primevue/resources/primevue.min.css';
-import 'primeicons/primeicons.css';
-import 'primeflex/primeflex.css';
+const app = createApp(App)
 
-import { registerPrimeVueComponents } from './plugins/primevue';
+app.use(PrimeVue, { ripple: true })
+registerPrimeVueComponents(app)
+app.use(router)
 
-const app = createApp(App);
-
-app.use(PrimeVue, { ripple: true });
-registerPrimeVueComponents(app);
-app.use(router);
-
-app.mount('#app');
+app.mount('#app')

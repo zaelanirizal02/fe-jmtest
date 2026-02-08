@@ -11,16 +11,23 @@
             </template>
             <template #end>
                 <div class="flex align-items-center gap-2">
+                    <div style="display:flex; align-items:center; gap:0.5rem">
+                        <label>Choose Theme:</label>
+                        <select v-model="selectedTheme" @change="onThemeChange">
+                            <option v-for="t in themes" :key="t" :value="t">{{ t }}</option>
+                        </select>
+                    </div>
+
                     <div class="toggle-container" @click="toggleDarkMode">
-                      <label>Tema | </label>
+                        <label>| Mode </label>
                         <Button class="toggle-button">
                             <i :class="checked ? 'pi pi-moon' : 'pi pi-sun'"
                                 :style="{ color: checked ? 'yellow' : 'blue' }"></i>
                         </Button>
                     </div>
-                      <label class="blinking">| Mode {{ userRole }}</label>
+                    <label class="blinking">| {{ userRole }}</label>
 
-<!--                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />-->
+                    <!--                    <InputText placeholder="Search" type="text" class="w-8rem sm:w-auto" />-->
                     <div style="display: flex; align-items: center">
 
                         <!-- <Button icon="pi pi-file-pdf" severity="success" class="mr-2 bs" /> -->
@@ -37,6 +44,7 @@
 
 <script setup>
 import { ref, watch } from "vue";
+import { onMounted } from 'vue'
 import { useRouter } from "vue-router";
 import spongebobImg from "../../assets/sepongebob.png";
 import apiClient from "../../services/apiService";
@@ -46,23 +54,35 @@ const userRole = ref('');
 
 const role = "director";
 const isDropdownVisible = ref(false);
-const checked = ref(localStorage.getItem('dark-mode') === 'true')
+// Define a light/dark pair to toggle between using PrimeVue themes
+const LIGHT_THEME = 'saga-blue'
+const DARK_THEME = 'arya-blue'
+const themes = [
+    LIGHT_THEME,
+    DARK_THEME,
+    'saga-blue',
+    'vela-blue',
+    'arya-blue'
+]
+const selectedTheme = ref(localStorage.getItem('pv-theme') || LIGHT_THEME)
+// checked reflects whether the current selected theme is the dark variant
+const checked = ref(selectedTheme.value === DARK_THEME)
 
 const fetchUserRole = async () => {
-  try {
-    const accessToken = localStorage.getItem("accessToken");
-    if (!accessToken) return;
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) return;
 
-    const response = await apiClient.get("/me", {
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    });
+        const response = await apiClient.get("/me", {
+            headers: {
+                Authorization: `Bearer ${accessToken}`
+            }
+        });
 
-    userRole.value = response.data.user.role || '';
-  } catch (error) {
-    console.error("Gagal mengambil role:", error.response?.data);
-  }
+        userRole.value = response.data.user.role || '';
+    } catch (error) {
+        console.error("Gagal mengambil role:", error.response?.data);
+    }
 };
 
 fetchUserRole();
@@ -84,41 +104,44 @@ function handleAction(action) {
 
 // Terapkan tema awal
 function switchTheme(theme) {
-    const existingLink = document.getElementById('theme-link');
-    if (existingLink) {
-        existingLink.remove();
+    // Replace or create the theme <link id="theme-link"> so PrimeVue theme can be switched at runtime
+    let themeLink = document.getElementById('theme-link')
+    if (!themeLink) {
+        themeLink = document.createElement('link')
+        themeLink.id = 'theme-link'
+        themeLink.rel = 'stylesheet'
+        document.head.appendChild(themeLink)
     }
-    const themeLink = document.createElement('link');
-    themeLink.id = 'theme-link';
-    themeLink.rel = 'stylesheet';
-    themeLink.href = `/node_modules/primevue/resources/themes/${theme}/theme.css`; // Sesuaikan dengan path tema yang benar
-    document.head.appendChild(themeLink);
+    themeLink.href = `/node_modules/primevue/resources/themes/${theme}/theme.css`
+    localStorage.setItem('pv-theme', theme)
+}
+
+
+function onThemeChange() {
+    switchTheme(selectedTheme.value)
+    // update checked flag when user picks a theme manually
+    checked.value = selectedTheme.value === DARK_THEME
 }
 
 function toggleDarkMode() {
-  checked.value = !checked.value
-  localStorage.setItem('dark-mode', String(checked.value))
-  applyThemeClass()
+    // Toggle between our chosen light/dark PrimeVue themes
+    checked.value = !checked.value
+    const newTheme = checked.value ? DARK_THEME : LIGHT_THEME
+    selectedTheme.value = newTheme
+    switchTheme(newTheme)
 }
 
-function applyThemeClass() {
-  const html = document.documentElement
-  html.classList.toggle('dark', checked.value)
-}
-
-applyThemeClass()
-
-
-watch(checked, (newValue) => {
-    const htmlElement = document.documentElement;
-    if (newValue) {
-        htmlElement.classList.add("dark");
-        htmlElement.classList.remove("light");
-    } else {
-        htmlElement.classList.add("light");
-        htmlElement.classList.remove("dark");
+onMounted(() => {
+    // Apply saved PrimeVue theme on component mount (in case main didn't run early enough)
+    try {
+        switchTheme(selectedTheme.value)
+    } catch (e) {
+        // noop
     }
-});
+})
+
+
+// Removed body class toggling; theme switching is handled by PrimeVue theme CSS
 
 
 
@@ -204,8 +227,8 @@ const logout = async () => {
         localStorage.removeItem("accessToken");
         router.push({ name: "login" });
     } catch (error) {
-      console.error("Error during logout:", error.response?.status);
-      console.error("Error detail:", error.response?.data);
+        console.error("Error during logout:", error.response?.status);
+        console.error("Error detail:", error.response?.data);
     }
 
 };
@@ -331,34 +354,22 @@ const menuSetting = [
 </style>
 
 <style>
-html.light {
-    --bg-color: rgb(221, 229, 230);
-    --text-color: black;
-}
-
-html.dark {
-    --bg-color: #1a1a1a;
-    --text-color: white;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
 .blinking {
-  animation: blink-animation 1.5s linear infinite;
-  color: rgb(197, 230, 50); /* Bisa disesuaikan */
-  font-weight: bold;
+    animation: blink-animation 1.5s linear infinite;
+    color: rgb(197, 230, 50);
+    /* Bisa disesuaikan */
+    font-weight: bold;
 }
 
 @keyframes blink-animation {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
 
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
 </style>
